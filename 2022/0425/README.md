@@ -5,7 +5,11 @@
 
 ## 白盒模型推理示例
 
+请参考 [model_inference.py](model_inference.py#L15)
+
 ## 初赛baseline
 
+请参考 [attack_example.py](attack_example.py)
 
+请注意在执行前将白盒模型的参数文件放入 ``assets/`` 文件夹.
 
