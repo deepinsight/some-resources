@@ -7,7 +7,7 @@
 
 请参考 [model_inference.py](model_inference.py#L15)
 
-## 初赛baseline
+## baseline方法
 
 请参考 [attack_example.py](attack_example.py)
 
