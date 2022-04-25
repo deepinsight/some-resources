@@ -64,11 +64,11 @@ class PyFAT:
         assert len(im_v.shape) == 3
         bboxes, kpss = self.detector.detect(im_a, max_num=1)
         if bboxes.shape[0]==0:
-            return None
+            return im_a
         att_img, M = norm_crop(im_a, kpss[0], image_size=112)
         bboxes, kpss = self.detector.detect(im_v, max_num=1)
         if bboxes.shape[0]==0:
-            return None
+            return im_a
         vic_img, _ = norm_crop(im_v, kpss[0], image_size=112)
 
         att_img = att_img[:,:,::-1]
@@ -131,8 +131,6 @@ def main(args):
 
         ta = datetime.datetime.now()
         adv_img = tool.generate(origin_att_img, origin_vic_img, 0)
-        if adv_img is None:
-            adv_img = origin_att_img
         tb = datetime.datetime.now()
         #print( (tb-ta).total_seconds() )
         save_name = '{}_2.png'.format(str_idname)
