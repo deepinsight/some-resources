@@ -24,3 +24,12 @@
 2. 执行 ``python attack_example.py``.
 3. 添加 ``--device cuda`` 参数可开启GPU运行.(需安装支持CUDA的PyTorch/onnxruntime版本)
 4. 运行完毕结果将默认生成至 ``output/`` 文件夹.
+
+
+## 工具
+
+### 检查初赛提交文件
+
+```
+python check_submission_A.py <your_submission_file.tar.gz>
+```
