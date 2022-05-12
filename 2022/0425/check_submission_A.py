@@ -37,6 +37,10 @@ def find_valid_dir(input_dir):
                     print('image is none:', _file)
                     find_all = False
                     break
+                if img.shape!=(250,250,3):
+                    print('image shape is not correct:', _file)
+                    find_all = False
+                    break
             if not find_all:
                 return None
             else:
