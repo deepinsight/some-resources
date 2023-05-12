@@ -10,7 +10,7 @@ class FaceModel(pl.LightningModule):
     def __init__(self, backbone, epoch):
         super().__init__()
         self.save_hyperparameters()
-        self.backbone = timm.create_model(backbone, num_classes=2, pretrained=False)
+        self.backbone = timm.create_model(backbone, num_classes=2, pretrained=False) #pretraining is not allowed
         self.epoch = epoch
         self.loss = nn.CrossEntropyLoss()
 

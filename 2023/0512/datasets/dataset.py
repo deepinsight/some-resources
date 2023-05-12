@@ -12,7 +12,6 @@ from torchvision import transforms
 import cv2
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
-#from .augs import RectangleBorderAugmentation
 
 class BackgroundGenerator(threading.Thread):
     def __init__(self, generator, local_rank, max_prefetch=6):
@@ -77,25 +76,21 @@ class FaceDataset(Dataset):
     def __init__(self, root_dir='data/SuHiFiMask/Challenge', split='train', return_path=False):
         super(FaceDataset, self).__init__()
 
-        #self.local_rank = local_rank
-        #self.is_train = is_train
         self.input_size = 224
-        #self.num_kps = 68
         transform_list = []
         if split=='train':
             transform_list += \
                 [
-                    A.ColorJitter(brightness=0.3, contrast=0.3, p=0.5),
-                    A.ToGray(p=0.1),
-                    A.ISONoise(p=0.1),
-                    A.MedianBlur(blur_limit=(1,7), p=0.1),
-                    A.GaussianBlur(blur_limit=(1,7), p=0.1),
-                    A.MotionBlur(blur_limit=(5,12), p=0.1),
+                    A.ColorJitter(brightness=0.3, contrast=0.3, p=0.2),
+                    A.ToGray(p=0.05),
+                    A.ISONoise(p=0.05),
+                    A.MedianBlur(blur_limit=(1,7), p=0.05),
+                    A.GaussianBlur(blur_limit=(1,7), p=0.05),
+                    A.MotionBlur(blur_limit=(5,12), p=0.05),
                     A.ImageCompression(quality_lower=50, quality_upper=90, p=0.05),
                     A.ShiftScaleRotate(shift_limit=0.1, scale_limit=0.2, rotate_limit=30, interpolation=cv2.INTER_LINEAR, 
-                        border_mode=cv2.BORDER_CONSTANT, value=0, mask_value=0, p=0.8),
+                        border_mode=cv2.BORDER_CONSTANT, value=0, mask_value=0, p=0.2),
                     A.HorizontalFlip(p=0.5),
-                    #RectangleBorderAugmentation(limit=0.2, fill_value=0, p=0.1),
                 ]
         transform_list += \
             [
